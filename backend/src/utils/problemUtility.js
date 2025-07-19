@@ -62,7 +62,7 @@ const options = {
   url: 'https://judge0-ce.p.rapidapi.com/submissions/batch',
   params: {
     tokens: resultToken.join(","),
-    base64_encoded: 'true',
+    base64_encoded: 'false',
     fields: '*'
   },
   headers: {
