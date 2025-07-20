@@ -15,9 +15,14 @@ const cors = require('cors')
 // console.log("Hello")
 
 app.use(cors({
-    origin: 'https://byte-battle-t14d.vercel.app',
+    origin: [
+        'https://byte-battle-t14d.vercel.app',
+        'https://byte-battle-t14d-git-main-shailendra-s-projects-99ab3c11.vercel.app',
+        'https://byte-battle-t14d-l4tinzot3-shailendra-s-projects-99ab3c11.vercel.app'
+    ],
     credentials: true 
 }))
+
 
 app.use(express.json());
 app.use(cookieParser());
