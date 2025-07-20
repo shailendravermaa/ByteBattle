@@ -15,7 +15,7 @@ const cors = require('cors')
 // console.log("Hello")
 
 app.use(cors({
-    origin: 'https://byte-battle-t14d.vercel.app/',
+    origin: 'https://byte-battle-t14d.vercel.app',
     credentials: true 
 }))
 
