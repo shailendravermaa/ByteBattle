@@ -33,24 +33,13 @@ app.get('/', (req, res)=>{
     })
 })
 
-
-const InitalizeConnection = async ()=>{
-    try{
-
-        await Promise.all([main(),redisClient.connect()]);
-        console.log("DB Connected");
-        
-        app.listen(process.env.PORT || 8000, ()=>{
-            console.log("Server listening at port number: "+ process.env.PORT);
-        })
-
-    }
-    catch(err){
-        console.log("Error: "+err);
-    }
-}
-
-
-InitalizeConnection();
+(async () => {
+  try {
+    await Promise.all([main(), redisClient.connect()]);
+    console.log("DB and Redis connected");
+  } catch (err) {
+    console.error("Connection error:", err);
+  }
+})();
 
 module.exports = app;
