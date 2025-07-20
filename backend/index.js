@@ -15,7 +15,7 @@ const cors = require('cors')
 // console.log("Hello")
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://byte-battle-t14d.vercel.app/',
     credentials: true 
 }))
 
