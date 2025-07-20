@@ -2,14 +2,14 @@ require('dotenv').config();
 const express = require('express')
 const app = express();
 
-const main =  require('./config/db')
+const main =  require('./src/config/db')
 const cookieParser =  require('cookie-parser');
-const authRouter = require("./routes/userAuth");
-const redisClient = require('./config/redis');
-const problemRouter = require("./routes/problemCreator");
-const submitRouter = require("./routes/submit")
-const aiRouter = require("./routes/aiChatting")
-const videoRouter = require("./routes/videoCreator");
+const authRouter = require("./src/routes/userAuth");
+const redisClient = require('./src/config/redis');
+const problemRouter = require("./src/routes/problemCreator");
+const submitRouter = require("./src/routes/submit")
+const aiRouter = require("./src/routes/aiChatting")
+const videoRouter = require("./src/routes/videoCreator");
 const cors = require('cors')
 
 // console.log("Hello")
