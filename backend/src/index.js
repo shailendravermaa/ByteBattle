@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express')
 const app = express();
-require('dotenv').config();
+
 const main =  require('./config/db')
 const cookieParser =  require('cookie-parser');
 const authRouter = require("./routes/userAuth");
@@ -33,13 +34,25 @@ app.get('/', (req, res)=>{
     })
 })
 
-(async () => {
-  try {
-    await Promise.all([main(), redisClient.connect()]);
-    console.log("DB and Redis connected");
-  } catch (err) {
-    console.error("Connection error:", err);
-  }
-})();
+
+const InitalizeConnection = async ()=>{
+    try{
+
+        await Promise.all([main(),redisClient.connect()]);
+        console.log("DB Connected");
+        
+        app.listen(process.env.PORT || 8000, ()=>{
+            console.log("Server listening at port number: "+ process.env.PORT);
+        })
+
+    }
+    catch(err){
+        console.log("Error: "+err);
+    }
+}
+
+
+InitalizeConnection();
+
 
 module.exports = app;
