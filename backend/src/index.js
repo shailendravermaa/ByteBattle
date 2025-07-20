@@ -53,3 +53,4 @@ const InitalizeConnection = async ()=>{
 
 InitalizeConnection();
 
+module.exports = app;
