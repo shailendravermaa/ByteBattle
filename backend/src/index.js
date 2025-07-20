@@ -26,6 +26,12 @@ app.use('/problem',problemRouter);
 app.use('/submission',submitRouter);
 app.use('/ai',aiRouter);
 app.use("/video",videoRouter);
+app.get('/', (req, res)=>{
+    res.send({
+        activeStatus:true,
+        error:false
+    })
+})
 
 
 const InitalizeConnection = async ()=>{
@@ -34,7 +40,7 @@ const InitalizeConnection = async ()=>{
         await Promise.all([main(),redisClient.connect()]);
         console.log("DB Connected");
         
-        app.listen(process.env.PORT, ()=>{
+        app.listen(process.env.PORT || 8000, ()=>{
             console.log("Server listening at port number: "+ process.env.PORT);
         })
 
