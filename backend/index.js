@@ -15,13 +15,27 @@ const cors = require('cors')
 // console.log("Hello")
 
 app.use(cors({
-    origin: ['https://bytbattle.netlify.app',
-        'https://byte-battle-t14d.vercel.app',
-        'https://byte-battle-t14d-git-main-shailendra-s-projects-99ab3c11.vercel.app',
-        'https://byte-battle-t14d-l4tinzot3-shailendra-s-projects-99ab3c11.vercel.app'
-    ],
-    credentials: true 
-}))
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://bytbattle.netlify.app',
+      'https://byte-battle-t14d.vercel.app',
+      'https://byte-battle-t14d-git-main-shailendra-s-projects-99ab3c11.vercel.app',
+      'https://byte-battle-t14d-l4tinzot3-shailendra-s-projects-99ab3c11.vercel.app'
+      
+    ];
+    
+    console.log("Incoming origin:", origin); // 👈 LOG HERE
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Authorization", "Content-Type"],
+  credentials: true
+}));
 
 
 app.use(express.json());
