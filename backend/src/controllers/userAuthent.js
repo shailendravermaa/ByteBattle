@@ -10,32 +10,40 @@ const register = async (req,res)=>{
     
     try{
         // validate the data;
-
+    console.log("step 1")
     await validate(req.body); 
+    console.log("step 2")
       const {firstName, emailId, password}  = req.body;
+      console.log("step 3")
       const exists = await User.findOne({ emailId:emailId });
+      console.log("step 4")
       if (exists) throw new Error("Email registered");
-
+    console.log("step 5")
       req.body.password = await bcrypt.hash(password, 10);
+      console.log("step 6")
       req.body.role = 'user'
-    //
+    console.log("step 7")
     
      const user =  await User.create(req.body);
+     console.log("step 8")
      const token =  jwt.sign({_id:user._id , emailId:emailId, role:'user'},process.env.JWT_KEY,{expiresIn: 60*60});
+     console.log("step 9")
      const reply = {
         firstName: user.firstName,
         emailId: user.emailId,
         _id: user._id,
         role:user.role,
     }
-    
+    console.log("step 10")
      res.cookie('token',token,{maxAge: 60*60*1000});
+     console.log("step 11")
      res.status(201).json({
         user:reply,
         message:"registered Successfully"
     })
     }
     catch(err){
+        console.log("step 11")
         res.status(400).json({ error: err.message });
     }
 }
