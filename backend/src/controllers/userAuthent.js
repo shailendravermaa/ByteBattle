@@ -11,8 +11,10 @@ const register = async (req,res)=>{
     try{
         // validate the data;
 
-      validate(req.body); 
+    await validate(req.body); 
       const {firstName, emailId, password}  = req.body;
+      const exists = await User.findOne({ emailId:emailId });
+      if (exists) throw new Error("Email registered");
 
       req.body.password = await bcrypt.hash(password, 10);
       req.body.role = 'user'
@@ -30,11 +32,11 @@ const register = async (req,res)=>{
      res.cookie('token',token,{maxAge: 60*60*1000});
      res.status(201).json({
         user:reply,
-        message:"Loggin Successfully"
+        message:"registered Successfully"
     })
     }
     catch(err){
-        res.status(400).send("Error: "+err);
+        res.status(400).json({ error: err.message });
     }
 }
 
