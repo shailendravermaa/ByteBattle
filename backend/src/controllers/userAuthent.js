@@ -4,6 +4,7 @@ const validate = require('../utils/validator');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const Submission = require("../models/submission")
+const dbConnect = require("../utils/dbConnect")
 
 
 const register = async (req,res)=>{
@@ -11,6 +12,7 @@ const register = async (req,res)=>{
     try{
         // validate the data;
     console.log("step 1")
+    await dbConnect();
     await validate(req.body); 
     console.log("step 2")
       const {firstName, emailId, password}  = req.body;
