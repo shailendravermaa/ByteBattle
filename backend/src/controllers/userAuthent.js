@@ -37,14 +37,19 @@ const register = async (req,res)=>{
     console.log("step 10")
      res.cookie('token',token,{maxAge: 60*60*1000});
      console.log("step 11")
-     res.status(201).json({
+  return   res.status(201).json({
         user:reply,
         message:"registered Successfully"
     })
     }
     catch(err){
-        console.log("step 11")
-        res.status(400).json({ error: err.message });
+         console.error("REGISTER ERROR DETAILS:", {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    body: req.body  // Log the received payload
+  });
+  res.status(400).json({ error: err.message });
     }
 }
 
