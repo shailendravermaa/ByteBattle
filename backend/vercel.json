@@ -6,7 +6,7 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["dist/**"],
-        "maxDuration": 30 
+        "maxDuration": 30
       }
     }
   ],
@@ -15,11 +15,5 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ],
-  "functions": {
-    "index.js": {
-      "memory": 1024,  
-      "maxDuration": 30
-    }
-  }
+  ]
 }
