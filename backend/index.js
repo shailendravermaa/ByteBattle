@@ -11,7 +11,7 @@ const submitRouter = require("./src/routes/submit")
 const aiRouter = require("./src/routes/aiChatting")
 const videoRouter = require("./src/routes/videoCreator");
 const cors = require('cors')
-
+const dbConnect = require("./src/utils/dbConnect")
 // console.log("Hello")
 
 app.use(cors({
@@ -27,6 +27,10 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+app.use((req, res, next) =>{
+    dbConnect();
+    next()
+  })
 
 app.use('/user',authRouter);
 app.use('/problem',problemRouter);
