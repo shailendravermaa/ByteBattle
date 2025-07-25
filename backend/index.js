@@ -29,20 +29,20 @@ app.use(cookieParser());
 // Optimized DB connection middleware
 let isDbConnected = false;
 
-app.use(async (req, res, next) => {
-    try {
-        // Only connect if not already connected
-        if (!isDbConnected) {
-            console.log("Establishing initial DB connection");
-            await dbConnect();
-            isDbConnected = true;
-        }
-        next();
-    } catch (err) {
-        console.error("DB connection failed:", err);
-        res.status(500).json({ error: "Database connection failed" });
-    }
-});
+// app.use(async (req, res, next) => {
+//     try {
+//         // Only connect if not already connected
+//         if (!isDbConnected) {
+//             console.log("Establishing initial DB connection");
+//             await dbConnect();
+//             isDbConnected = true;
+//         }
+//         next();
+//     } catch (err) {
+//         console.error("DB connection failed:", err);
+//         res.status(500).json({ error: "Database connection failed" });
+//     }
+// });
 app.use('/user',authRouter);
 app.use('/problem',problemRouter);
 app.use('/submission',submitRouter);

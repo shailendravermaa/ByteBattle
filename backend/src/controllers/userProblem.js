@@ -3,8 +3,10 @@ const Problem = require("../models/problem");
 const User = require("../models/user");
 const Submission = require("../models/submission");
 const SolutionVideo = require("../models/solutionVideo")
+const dbConnect = require("../utils/dbConnect")
 
 const createProblem = async (req,res)=>{
+  await dbConnect();
    
   // API request to authenticate user:
     const {title,description,difficulty,tags,
@@ -161,7 +163,8 @@ const deleteProblem = async(req,res)=>{
 
 
 const getProblemById = async(req,res)=>{
-
+  
+  await dbConnect();
   const {id} = req.params;
   try{
      
@@ -200,6 +203,7 @@ const getProblemById = async(req,res)=>{
 const getAllProblem = async(req,res)=>{
 
   try{
+    await dbConnect();
      
     const getProblem = await Problem.find({}).select('_id title difficulty tags');
 
@@ -224,6 +228,7 @@ const getAllProblem = async(req,res)=>{
 const solvedAllProblembyUser =  async(req,res)=>{
    
     try{
+      await dbConnect();
        
       const userId = req.result._id;
 
@@ -249,6 +254,7 @@ const solvedAllProblembyUser =  async(req,res)=>{
 const submittedProblem = async(req,res)=>{
 
   try{
+    await dbConnect();
      
     const userId = req.result._id;
     const problemId = req.params.pid;
