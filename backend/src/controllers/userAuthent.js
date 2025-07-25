@@ -37,7 +37,14 @@ const register = async (req,res)=>{
         role:user.role,
     }
     console.log("step 10")
-     res.cookie('token',token,{maxAge: 60*60*1000});
+     // In login controller
+res.cookie('token', token, {
+  maxAge: 60 * 60 * 1000,
+  httpOnly: true,
+  secure: true, // Required for HTTPS
+  sameSite: 'None', // Required for cross-site cookies
+  domain: '.vercel.app' // Main domain for all subdomains
+});
      console.log("step 11")
   return   res.status(201).json({
         user:reply,
@@ -82,7 +89,14 @@ const login = async (req,res)=>{
         }
 
         const token =  jwt.sign({_id:user._id , emailId:emailId, role:user.role},process.env.JWT_KEY,{expiresIn: 60*60});
-        res.cookie('token',token,{maxAge: 60*60*1000});
+        // In login controller
+res.cookie('token', token, {
+  maxAge: 60 * 60 * 1000,
+  httpOnly: true,
+  secure: true, // Required for HTTPS
+  sameSite: 'None', // Required for cross-site cookies
+  domain: '.vercel.app' // Main domain for all subdomains
+});
         res.status(201).json({
             user:reply,
             message:"Loggin Successfully"
