@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const redisClient = require("../config/redis")
-
+const dbConnect = require("../utils/dbConnect")
 const userMiddleware = async (req,res,next)=>{
 
     try{
-        
+          await dbConnect();
         const {token} = req.cookies;
         if(!token)
             throw new Error("Token is not persent");
@@ -37,7 +37,13 @@ const userMiddleware = async (req,res,next)=>{
         next();
     }
     catch(err){
-        res.status(401).send("Error: "+ err.message)
+        console.error("REGISTER ERROR DETAILS:", {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    body: req.body  // Log the received payload
+  });
+  res.status(401).json({ error: err.message });
     }
 
 }

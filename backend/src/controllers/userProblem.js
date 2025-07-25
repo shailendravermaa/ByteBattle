@@ -67,7 +67,13 @@ const createProblem = async (req,res)=>{
       res.status(201).send("Problem Saved Successfully");
     }
     catch(err){
-        res.status(400).send("Error: "+err);
+        console.error("REGISTER ERROR DETAILS:", {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    body: req.body  // Log the received payload
+  });
+  res.status(400).json({ error: err.message });
     }
 }
 
@@ -157,7 +163,13 @@ const deleteProblem = async(req,res)=>{
   }
   catch(err){
      
-    res.status(500).send("Error: "+err);
+    console.error("REGISTER ERROR DETAILS:", {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    body: req.body  // Log the received payload
+  });
+  res.status(500).json({ error: err.message });
   }
 }
 
@@ -196,7 +208,13 @@ const getProblemById = async(req,res)=>{
 
   }
   catch(err){
-    res.status(500).send("Error: "+err);
+    console.error("REGISTER ERROR DETAILS:", {
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    body: req.body  // Log the received payload
+  });
+  res.status(500).json({ error: err.message });
   }
 }
 
