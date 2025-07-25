@@ -106,3 +106,80 @@ ByteBattle-Backend/
 ```
 
 
+## 🛠️ **Technology Stack**
+
+<div align="center">
+
+### **Backend Architecture**
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+
+### **Frontend Experience**
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![daisyUI](https://img.shields.io/badge/daisyUI-1ad1a5?style=for-the-badge&logo=daisyui&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+
+### **Cloud & Services**
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+
+</div>
+---
+## 🏗️ **System Architecture**
+
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph "🌐 Frontend Layer"
+        A[React Application]
+        B[Redux Store]
+        C[Component Library]
+    end
+    
+    subgraph "🔗 API Gateway"
+        D[Express Router]
+        E[Middleware Stack]
+        F[Rate Limiting]
+    end
+    
+    subgraph "🧠 Core Services"
+        G[Authentication Service]
+        H[Problem Service]
+        I[Contest Service]
+        J[AI Assistant Service]
+    end
+    
+    subgraph "💾 Data Layer"
+        K[(MongoDB)]
+        L[(Redis Cache)]
+        M[(File Storage)]
+    end
+    
+    subgraph "🌍 External Services"
+        N[Google AI]
+        O[Cloudinary]
+        P[Razorpay]
+        Q[Email Service]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> G
+    D --> H
+    D --> J
+    G --> K
+    H --> K
+    J --> N
+    H --> L
+    A --> O
+    
+    
+    style A fill:#61DAFB,stroke:#21538E,color:#000
+    style K fill:#47A248,stroke:#2E7D32,color:#fff
+    style L fill:#DC382D,stroke:#B71C1C,color:#fff
+    style N fill:#4285F4,stroke:#1565C0,color:#fff
+```
